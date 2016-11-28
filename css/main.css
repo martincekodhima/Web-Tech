@@ -1,8 +1,9 @@
 .background {
-    background: url(https://drscdn.500px.org/photo/185399849/m%3D2048_k%3D1_a%3D1/5562ea6d51dc6c77f60e4c8487e2aa9a) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    opacity: 0.92;
+    filter: grayscale(20%); 
     height: 100%;
 }

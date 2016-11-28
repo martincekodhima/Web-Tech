@@ -1,9 +1,6 @@
 $(document).ready(function () {
-    _500px.init({
-      sdk_key: 'bd1d93962ca5dafb586e6724fd243a352a09b874'
-    });
+    var photo = new UnsplashPhoto();
+
+    $(".background").css("background", "url(" + photo.randomize("daily").size(1920,1080).fetch() + ") no-repeat center center fixed");
     
-    _500px.api('/photos', { feature: 'popular', page: 1, image_size: "2048" }, function (response) {
-        console.log(response.data.photos);
-    });
 });
