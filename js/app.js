@@ -3,7 +3,7 @@ $(document).ready(function () {
       sdk_key: 'bd1d93962ca5dafb586e6724fd243a352a09b874'
     });
     
-    _500px.api('/photos', { feature: 'popular', page: 1 }, function (response) {
+    _500px.api('/photos', { feature: 'popular', page: 1, image_size: "2048" }, function (response) {
         console.log(response.data.photos);
     });
 });
