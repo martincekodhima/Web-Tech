@@ -14,11 +14,7 @@
         <div class="navbar-fixed">
             <!-- Dropdown Content -->
             <ul id="dropdown1" class="dropdown-content">
-                <li><a href="/features/integrations">Integrations</a></li>
-                <li><a href="/features/codeblock">Code blocks</a></li>
-                <li><a href="/features/user">User API</a></li>
-                <li><a href="/features/object">Data API</a></li>
-                <li><a href="/features/hosting">Hosting</a></li>     
+                <li><a href="/features/integrations">Integrations</a></li>    
             </ul>
             <nav>
                 <div class="nav-wrapper">
@@ -31,14 +27,14 @@
                             <li class="link"><a id="search-navigation"><i class="material-icons">search</i></a></li>
                         </ul>
                         <ul class="right hide-on-med-and-down">          
-                            <li class="link"><a href="#random">Random <i class="material-icons right">repeat</i></a></li>  
+                            <li class="link"><a id="random">Random <i class="material-icons right">repeat</i></a></li>  
                             <li><a href="https://unsplash.com/" class="waves-effect waves-light btn yellow darken-2 grey-text text-darken-4" >Go to UnSplash</a>
                             </li>     
                         </ul>
 
                         <!-- Navbar menu mobile -->
                         <ul class="side-nav" style="transform: translateX(-100%);">
-                            <li><a href="#random">Random</a></li> 
+                            <li><a href="#random"  id="random">Random</a></li> 
                         </ul>
 
                     </div>
@@ -48,57 +44,16 @@
         <div id="search-dropdown" style="display:none;">
             <nav>
                 <div class="nav-wrapper">
-                    <form>
-                        <div class="input-field">
-                            <input id="search" type="search" required>
-                            <label for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i> 
-                        </div>
-                    </form>
+                    <div class="input-field">
+                        <input id="search" type="search" required>
+                        <label for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons" id="close-search">close</i> 
+                    </div>
                 </div>
             </nav>  
         </div>
         <div class="container">
-            <div class="row">        
-                <div class="card col s4">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="images/office.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                        <p><a href="#">This is a link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                    </div>
-                </div>
-                <div class="card col s4">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="images/office.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                        <p><a href="#">This is a link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                    </div>
-                </div>
-                <div class="card col s4">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="images/office.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                        <p><a href="#">This is a link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                    </div>
-                </div>
+            <div class="row main-content">
                 
             </div>
         </div>
