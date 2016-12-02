@@ -5,6 +5,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <!-- main.css -->
+        <link rel="stylesheet" href="css/main.css">
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,31 +14,22 @@
 
     <body>
         <div class="navbar-fixed">
-            <!-- Dropdown Content -->
-            <ul id="dropdown1" class="dropdown-content">
-                <li><a href="/features/integrations">Integrations</a></li>    
-            </ul>
             <nav>
                 <div class="nav-wrapper">
                     <div class="col s12">
-                        <a href="index.html" class="brand-logo center">UnSplash Galleria</a>        
-                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <a href="index.html" class="brand-logo center">UnSplash Galleria</a>
 
                         <!-- Navbar menu -->
                         <ul class="left hide-on-med-and-down">
                             <li class="link"><a id="search-navigation"><i class="material-icons">search</i></a></li>
                         </ul>
                         <ul class="right hide-on-med-and-down">          
-                            <li class="link"><a id="random">Random <i class="material-icons right">repeat</i></a></li>  
+                            <li class="link" id="random"><a href="#random">Random <i class="material-icons right">repeat</i></a></li>  
                             <li><a href="https://unsplash.com/" class="waves-effect waves-light btn yellow darken-2 grey-text text-darken-4" >Go to UnSplash</a>
                             </li>     
                         </ul>
-
-                        <!-- Navbar menu mobile -->
-                        <ul class="side-nav" style="transform: translateX(-100%);">
-                            <li><a href="#random"  id="random">Random</a></li> 
-                        </ul>
-
+                        
+                    
                     </div>
                 </div>                    
             </nav>
@@ -53,8 +46,10 @@
             </nav>  
         </div>
         <div class="container">
-            <div class="row main-content">
-                
+            <div class="row">
+                <div class="col s12 cards-container main-content-0">
+                    
+                </div>
             </div>
         </div>
        

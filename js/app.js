@@ -1,17 +1,29 @@
 $(document).ready(function () {
-    // declare an opening for unisplash api
-    var photo = new UnsplashPhoto();
-    
+    // declare a search-term variable
+    var searchTerm;
+    // we use tick so that the browser knows that its a different image
+    var tick = 0;
+    // for formatting reasons 
+    var page = 0;
     // onclick of the search in the menu toggle the search bar
     $("#search-navigation").click(function () {
-        $("#search-dropdown").fadeToggle("fast", "easeOutSine");
+        // if the window is not at the top scroll to the top
+        if($(window).scrollTop() != 0) {
+            // animate the scrolling up
+            $("html,body").animate({ scrollTop: 0 }, "slow");
+        }
+        // fade in or out the search bar
+        $("#search-dropdown").fadeToggle("slow", "easeOutSine");
     });
     
     // if enter is pressed while the search bar is active reset the screen and display images
     $('#search').keypress(function (e) {
       if (e.which == 13) {
+          page = 0;
           $("#search-dropdown").fadeToggle("fast", "easeOutSine");
-          displayImages($("#search").val());
+          $(".main-content-"+page).html("");
+          searchTerm = $("#search").val();
+          displayImages(searchTerm,page);
           return false;
       }
     });
@@ -23,23 +35,35 @@ $(document).ready(function () {
     
     // if the random button is pressed then show random pictures
     $("#random").click(function() {
+        page = 0;
+        $(".main-content-"+page).html("");
         displayImages();
     });
     
+    // check if user has scrolled near the bottom
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+            page++;
+            $(".container").append('</div></div><center><h5>Page '+page+'</h5></center><div class="divider"></div><div class="row"><div class="col s12 cards-container main-content-'+page+'">');
+            displayImages(searchTerm, page);
+        }
+    });
+    
     // function to display the images
-    function displayImages(keyword) {
-        $(".main-content").html("");
+    function displayImages(keyword,page) {
         if (keyword == null) {
-            for (var i = 0; i < 10; i++) {
-                $(".main-content").append('<div class="col s4"><div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="https://source.unsplash.com/random?sig='+i+'"></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span><p><a href="#">This is a link</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span><p>Here is some more information about this product that is only revealed once clicked on.</p></div></div></div>');
+            for (var i = 0; i < 20; i++) {
+                tick++;
+                $(".main-content-"+page).append('<div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="https://source.unsplash.com/random?sig='+tick+'"></div></div>');
             }
         } else {
-            for (var i = 0; i < 10; i++) {
-                $(".main-content").append('<div class="col s4"><div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+i+'"></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span><p><a href="#">This is a link</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span><p>Here is some more information about this product that is only revealed once clicked on.</p></div></div></div>');
+            for (var i = 0; i < 20; i++) {
+                tick++;
+                $(".main-content-"+page).append('<div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
             }
         }
     }
     
     // call the initial display images funciton which shows random pictures
-    displayImages();
+    displayImages(null,page);
 });
