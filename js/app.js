@@ -54,9 +54,6 @@ $(document).ready(function () {
     
     // if the random button is pressed then show random pictures
     $("#random").click(function() {
-        if (!$(this).hasClass("active")) {
-            $(this).addClass("active");
-        }
         cleanScreen();
         displayImages(null,0);
     });
@@ -85,47 +82,19 @@ $(document).ready(function () {
             // show random pictures
             for (var i = 0; i < 30; i++) {
                 tick++;
-                $(".main-content-"+page).append('<div class="card"><div class="card-image"><img class="materialboxed" src="https://source.unsplash.com/random?sig='+tick+'"></div></div>');
+                $(".main-content-"+page).append('<div class="card"><div class="card-image" data-src="https://source.unsplash.com/random?sig='+tick+'"><img src="https://source.unsplash.com/random?sig='+tick+'"></div></div>');
             }
         } else {
             // show pictures from a specific keyword
             for (var i = 0; i < 30; i++) {
                 tick++;
-                $(".main-content-"+page).append('<div class="card"><div class="card-image"><img class="materialboxed" src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
+                $(".main-content-"+page).append('<div class="card"><div class="card-image" data-src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"><img src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
             }
         }
-        // init materialbox
-        $('.materialboxed').materialbox();
-    }
-    
-    function openPhotoSwipe() {
-        // init photo swipe 
-        var pswpElement = document.querySelectorAll('.pswp')[0];
-
-        // build items array
-        var items = [
-            {
-                src: 'https://placekitten.com/600/400',
-                w: 600,
-                h: 400
-            },
-            {
-                src: 'https://placekitten.com/1200/900',
-                w: 1200,
-                h: 900
-            }
-        ];
-
-        // define options (if needed)
-        var options = {
-            // optionName: 'option value'
-            // for example:
-            index: 0 // start at first slide
-        };
-
-        // Initializes and opens PhotoSwipe
-        var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-        gallery.init();
+        // init the light gallery
+        $('.cards-container').lightGallery({
+            selector: '.card-image'
+        });
     }
     
     // call the initial display images funciton which shows random pictures
