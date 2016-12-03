@@ -82,13 +82,13 @@ $(document).ready(function () {
             // show random pictures
             for (var i = 0; i < 30; i++) {
                 tick++;
-                $(".main-content-"+page).append('<div class="card"><div class="card-image" data-src="https://source.unsplash.com/random?sig='+tick+'"><img src="https://source.unsplash.com/random?sig='+tick+'"></div></div>');
+                $(".main-content-"+page).append('<div class="card"><div class="card-image waves-effect waves-block waves-light" data-src="https://source.unsplash.com/random?sig='+tick+'"><img class="activator" src="https://source.unsplash.com/random?sig='+tick+'"></div></div>');
             }
         } else {
             // show pictures from a specific keyword
             for (var i = 0; i < 30; i++) {
                 tick++;
-                $(".main-content-"+page).append('<div class="card"><div class="card-image" data-src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"><img src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
+                $(".main-content-"+page).append('<div class="card"><div class="card-image waves-effect waves-block waves-light" data-src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"><img class="activator" src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
             }
         }
         // init the light gallery
