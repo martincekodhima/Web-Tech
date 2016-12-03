@@ -5,6 +5,7 @@ $(document).ready(function () {
     var tick = 0;
     // for formatting reasons 
     var page = 0;
+    
     // onclick of the search in the menu toggle the search bar
     $("#search-navigation").click(function () {
         // if the window is not at the top scroll to the top
@@ -12,9 +13,11 @@ $(document).ready(function () {
             // animate the scrolling up
             $("html,body").animate({ scrollTop: 0 }, "slow");
         }
-                
         // fade in or out the search bar
-        $("#search-dropdown").fadeToggle("slow", "easeOutSine");
+        $("#search-dropdown").fadeToggle("slow", "easeOutSine", function() {
+            // focus the text area
+            $("#search").focus();
+        });
     });
     
     // for searching in mobile view
@@ -26,9 +29,11 @@ $(document).ready(function () {
             // animate the scrolling up
             $("html,body").animate({ scrollTop: 0 }, "slow");
         }
-                
         // fade in or out the search bar
-        $("#search-dropdown").fadeToggle("slow", "easeOutSine");
+        $("#search-dropdown").fadeToggle("slow", "easeOutSine", function() {
+            // focus the text area
+            $("#search").focus();
+        });
     });
     
     // if enter is pressed while the search bar is active reset the screen and display images
@@ -49,8 +54,11 @@ $(document).ready(function () {
     
     // if the random button is pressed then show random pictures
     $("#random").click(function() {
+        if (!$(this).hasClass("active")) {
+            $(this).addClass("active");
+        }
         cleanScreen();
-        displayImages();
+        displayImages(null,0);
     });
     
     // start side nav
@@ -74,11 +82,13 @@ $(document).ready(function () {
     // function to display the images
     function displayImages(keyword,page) {
         if (keyword == null) {
+            // show random pictures
             for (var i = 0; i < 30; i++) {
                 tick++;
                 $(".main-content-"+page).append('<div class="card"><div class="card-image"><img class="materialboxed" src="https://source.unsplash.com/random?sig='+tick+'"></div></div>');
             }
         } else {
+            // show pictures from a specific keyword
             for (var i = 0; i < 30; i++) {
                 tick++;
                 $(".main-content-"+page).append('<div class="card"><div class="card-image"><img class="materialboxed" src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
@@ -86,6 +96,36 @@ $(document).ready(function () {
         }
         // init materialbox
         $('.materialboxed').materialbox();
+    }
+    
+    function openPhotoSwipe() {
+        // init photo swipe 
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+
+        // build items array
+        var items = [
+            {
+                src: 'https://placekitten.com/600/400',
+                w: 600,
+                h: 400
+            },
+            {
+                src: 'https://placekitten.com/1200/900',
+                w: 1200,
+                h: 900
+            }
+        ];
+
+        // define options (if needed)
+        var options = {
+            // optionName: 'option value'
+            // for example:
+            index: 0 // start at first slide
+        };
+
+        // Initializes and opens PhotoSwipe
+        var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        gallery.init();
     }
     
     // call the initial display images funciton which shows random pictures
