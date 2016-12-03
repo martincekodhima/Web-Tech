@@ -12,6 +12,7 @@ $(document).ready(function () {
             // animate the scrolling up
             $("html,body").animate({ scrollTop: 0 }, "slow");
         }
+                
         // fade in or out the search bar
         $("#search-dropdown").fadeToggle("slow", "easeOutSine");
     });
@@ -40,6 +41,9 @@ $(document).ready(function () {
         displayImages();
     });
     
+    // start side nav
+    $(".button-collapse").sideNav();
+    
     // check if user has scrolled near the bottom
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
@@ -52,16 +56,18 @@ $(document).ready(function () {
     // function to display the images
     function displayImages(keyword,page) {
         if (keyword == null) {
-            for (var i = 0; i < 20; i++) {
+            for (var i = 0; i < 30; i++) {
                 tick++;
-                $(".main-content-"+page).append('<div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="https://source.unsplash.com/random?sig='+tick+'"></div></div>');
+                $(".main-content-"+page).append('<div class="card"><div class="card-image"><img class="materialboxed" src="https://source.unsplash.com/random?sig='+tick+'"></div></div>');
             }
         } else {
-            for (var i = 0; i < 20; i++) {
+            for (var i = 0; i < 30; i++) {
                 tick++;
-                $(".main-content-"+page).append('<div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
+                $(".main-content-"+page).append('<div class="card"><div class="card-image"><img class="materialboxed" src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
             }
         }
+        // init materialbox
+        $('.materialboxed').materialbox();
     }
     
     // call the initial display images funciton which shows random pictures
