@@ -17,12 +17,25 @@ $(document).ready(function () {
         $("#search-dropdown").fadeToggle("slow", "easeOutSine");
     });
     
+    // for searching in mobile view
+    $("#search-navigation-mobile").click(function() {
+        // close side nav
+        $(".button-collapse").sideNav("hide");
+        // if the window is not at the top scroll to the top
+        if($(window).scrollTop() != 0) {
+            // animate the scrolling up
+            $("html,body").animate({ scrollTop: 0 }, "slow");
+        }
+                
+        // fade in or out the search bar
+        $("#search-dropdown").fadeToggle("slow", "easeOutSine");
+    });
+    
     // if enter is pressed while the search bar is active reset the screen and display images
     $('#search').keypress(function (e) {
       if (e.which == 13) {
-          page = 0;
           $("#search-dropdown").fadeToggle("fast", "easeOutSine");
-          $(".main-content-"+page).html("");
+          cleanScreen();
           searchTerm = $("#search").val();
           displayImages(searchTerm,page);
           return false;
@@ -36,8 +49,7 @@ $(document).ready(function () {
     
     // if the random button is pressed then show random pictures
     $("#random").click(function() {
-        page = 0;
-        $(".main-content-"+page).html("");
+        cleanScreen();
         displayImages();
     });
     
@@ -46,12 +58,18 @@ $(document).ready(function () {
     
     // check if user has scrolled near the bottom
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
             page++;
             $(".container").append('</div></div><center><h5>Page '+page+'</h5></center><div class="divider"></div><div class="row"><div class="col s12 cards-container main-content-'+page+'">');
             displayImages(searchTerm, page);
         }
     });
+    
+    // function to clean the screen
+    function cleanScreen() {
+        page = 0;
+        $(".row").html("").append('<div class="col s12 cards-container main-content-0">');
+    }
     
     // function to display the images
     function displayImages(keyword,page) {
