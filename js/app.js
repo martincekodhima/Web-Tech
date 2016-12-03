@@ -93,7 +93,8 @@ $(document).ready(function () {
         }
         // init the light gallery
         $('.cards-container').lightGallery({
-            selector: '.card-image'
+            selector: '.card-image',
+            zoom: true
         });
     }
     
