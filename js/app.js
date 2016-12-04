@@ -78,6 +78,7 @@ $(document).ready(function () {
     
     // function to display the images
     function displayImages(keyword,page) {
+        loading("Show");
         if (keyword == null) {
             // show random pictures
             for (var i = 0; i < 30; i++) {
@@ -94,8 +95,15 @@ $(document).ready(function () {
         // init the light gallery
         $('.cards-container').lightGallery({
             selector: '.card-image',
-            zoom: true
+            zoom: true,
+            download: false
         });
+        loading("Hide");
+    }
+    
+    // show or hide loading screen 
+    function loading() {
+        
     }
     
     // call the initial display images funciton which shows random pictures
