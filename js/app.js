@@ -83,6 +83,15 @@ $(document).ready(function () {
     // start side nav
     $(".button-collapse").sideNav();
     
+    // start collapsable front page
+    $('.collapsible').collapsible();
+    
+    // start carousel
+     $('.carousel.carousel-slider').carousel({
+         full_width: true,
+         indicators: true
+     });
+    
     // function to clean the screen
     function cleanScreen() {
         page = 0;
