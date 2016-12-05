@@ -62,28 +62,29 @@ $(document).ready(function () {
             $("#random").addClass("active");
         }
         cleanScreen();
-        displayImages(null,0);
+        searchTerm = null;
+        displayImages(searchTerm,page);
     });
+    
+    // pushpin
+    $('.toc-wrapper').pushpin();
+    
+    // scroll spy
+     $('.scrollspy').scrollSpy();
     
     // start side nav
     $(".button-collapse").sideNav();
     
-    // check if user has scrolled near the bottom
-    $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() == $(document).height()) {
-            delay(2000);
-            if($(window).scrollTop() + $(window).height() == $(document).height()) {
-                page++;
-                $(".container").append('</div></div><center><h5>Page '+page+'</h5></center><div class="divider"></div><div class="row"><div class="col s12 cards-container main-content-'+page+'">');
-                displayImages(searchTerm, page);
-            }
-        }
-    });
-    
     // function to clean the screen
     function cleanScreen() {
         page = 0;
-        $(".row").html("").append('<div class="col s12 cards-container main-content-0">');
+        $(".container").html("").append('<div class="row"><div class="col s12 scrollspy cards-container main-content-0" id="page-'+page+'"></div></div>');
+        showPushpin();
+    }
+    
+    // function to show the pushpin
+    function showPushpin() {
+        $(".row").append('<div class="col hide-on-small-only m3 l2"><div class="toc-wrapper"><ul class="section table-of-contents"><li><a href="#page-0">Page 0</a></li></ul></div></div>');
     }
     
     // function to display the images
@@ -101,6 +102,18 @@ $(document).ready(function () {
                 $(".main-content-"+page).append('<div class="card"><div class="card-image waves-effect waves-block waves-light" data-src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"><img class="activator" src="https://source.unsplash.com/all/random?'+ keyword  +'&sig='+tick+'"></div></div>');
             }
         }
+        // show the show more button at the end
+        $(".container").append('</div></div><center id="centerButton"><a class="waves-effect waves-light btn yellow darken-2 grey-text text-darken-4 showMore"><i class="material-icons right">expand_more</i>Show More</a><br><br><br></center>');
+        
+        // show more pages
+        $(".showMore").click(function() {
+            // fade and remove the button
+            $("#centerButton").fadeToggle("400", "easeOutSine", function() { $(this).remove(); });
+            page++;
+            $(".container").append('<center><h5>Page '+page+'</h5></center><div class="divider"></div><div class="row"><div class="col s12 cards-container scrollspy main-content-'+page+'" id="page-'+page+'">');
+            displayImages(searchTerm, page);
+        });
+        
         // init the light gallery
         $('.cards-container').lightGallery({
             selector: '.card-image',
@@ -110,5 +123,5 @@ $(document).ready(function () {
     }
     
     // call the initial display images funciton which shows random pictures
-    displayImages(null,page);
+    //displayImages(null,page);
 });
