@@ -39,21 +39,28 @@ $(document).ready(function () {
     // if enter is pressed while the search bar is active reset the screen and display images
     $('#search').keypress(function (e) {
       if (e.which == 13) {
+          // togge the dropdown search
           $("#search-dropdown").fadeToggle("fast", "easeOutSine");
+          // clean the screen
           cleanScreen();
+          // pass the keyword so function
           searchTerm = $("#search").val();
           displayImages(searchTerm,page);
           return false;
       }
     });
     
-    // when the x is pressed on the bar close the search bar
+    // when the x is pressed on the bar clean input
     $("#close-search").click(function() {
-        $("#search-dropdown").fadeToggle("fast", "easeOutSine");        
+        $("#search").val(""); 
+        $("#search").focus();
     });
     
     // if the random button is pressed then show random pictures
     $("#random").click(function() {
+        if (!$("#random").hasClass("active")) {
+            $("#random").addClass("active");
+        }
         cleanScreen();
         displayImages(null,0);
     });
@@ -64,9 +71,12 @@ $(document).ready(function () {
     // check if user has scrolled near the bottom
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() == $(document).height()) {
-            page++;
-            $(".container").append('</div></div><center><h5>Page '+page+'</h5></center><div class="divider"></div><div class="row"><div class="col s12 cards-container main-content-'+page+'">');
-            displayImages(searchTerm, page);
+            delay(2000);
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                page++;
+                $(".container").append('</div></div><center><h5>Page '+page+'</h5></center><div class="divider"></div><div class="row"><div class="col s12 cards-container main-content-'+page+'">');
+                displayImages(searchTerm, page);
+            }
         }
     });
     
@@ -78,7 +88,6 @@ $(document).ready(function () {
     
     // function to display the images
     function displayImages(keyword,page) {
-        loading("Show");
         if (keyword == null) {
             // show random pictures
             for (var i = 0; i < 30; i++) {
@@ -98,12 +107,6 @@ $(document).ready(function () {
             zoom: true,
             download: false
         });
-        loading("Hide");
-    }
-    
-    // show or hide loading screen 
-    function loading() {
-        
     }
     
     // call the initial display images funciton which shows random pictures
