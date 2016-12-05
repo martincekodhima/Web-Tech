@@ -112,7 +112,7 @@ $(document).ready(function () {
             // fade and remove the button
             $("#centerButton").fadeToggle("400", "easeOutSine", function() { $(this).remove(); });
             page++;
-            $(".container").append('<center><h5>Page '+page+'</h5></center><div class="divider"></div><div class="row"><div class="col s12 cards-container scrollspy main-content-'+page+'" id="page-'+page+'">');
+            $(".container").append('<center><h5 class="darken-2 grey-text text-darken-4">Page '+page+'</h5></center><div class="divider"></div><div class="row"><div class="col s12 cards-container scrollspy main-content-'+page+'" id="page-'+page+'">');
             displayImages(searchTerm, page);
         });
         
