@@ -66,8 +66,16 @@ $(document).ready(function () {
         displayImages(searchTerm,page);
     });
     
-    // pushpin
-    $('.toc-wrapper').pushpin();
+    $("#random-mobile").click(function() {
+        if (!$("#random").hasClass("active")) {
+            $("#random").addClass("active");
+        }
+        cleanScreen();
+        // close side nav
+        $(".button-collapse").sideNav("hide");
+        searchTerm = null;
+        displayImages(searchTerm,page);
+    });
     
     // scroll spy
      $('.scrollspy').scrollSpy();
@@ -79,12 +87,6 @@ $(document).ready(function () {
     function cleanScreen() {
         page = 0;
         $(".container").html("").append('<div class="row"><div class="col s12 scrollspy cards-container main-content-0" id="page-'+page+'"></div></div>');
-        showPushpin();
-    }
-    
-    // function to show the pushpin
-    function showPushpin() {
-        $(".row").append('<div class="col hide-on-small-only m3 l2"><div class="toc-wrapper"><ul class="section table-of-contents"><li><a href="#page-0">Page 0</a></li></ul></div></div>');
     }
     
     // function to display the images

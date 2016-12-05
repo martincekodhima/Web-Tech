@@ -53,3 +53,7 @@
     text-decoration: bold;
     position: fixed !important;
 }
+
+.toc-wrapper {
+    margin-right: 120px;
+}
