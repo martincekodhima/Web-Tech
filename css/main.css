@@ -1,6 +1,4 @@
-.cards-container {
-  column-break-inside: avoid;
-}
+/* css entries for the cards */
 .cards-container .card {
   display: inline-block;
   overflow: visible;
@@ -30,9 +28,11 @@
 .text-center {
   text-align: center;
 }
+/* disable overlay */
 #sidenav-overlay {
     display: none;
 }
+/* change the color of the nav bar */
 .nav-wrapper {
     background-color: #3F51B5;
 }
