@@ -1,3 +1,6 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
 /* css entries for the cards */
 .cards-container .card {
   display: inline-block;
